@@ -31,3 +31,10 @@ class UserRepository:
         self.session.commit()
         self.session.refresh(user)
         return user
+
+    def get_user(self, username):
+        stmt: select = select(User).where(User.username == username)
+        result = (
+            self.session.scalars(stmt)
+        ).first()
+        return result
