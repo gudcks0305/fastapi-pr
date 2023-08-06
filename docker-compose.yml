@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  todos-db:
+    image: mysql:8.0
+    container_name: todos
+    environment:
+      MYSQL_ROOT_PASSWORD: todos
+      MYSQL_DATABASE: todos
+    ports:
+      - "3306:3306"
+    volumes:
+      - todos:/db
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  todos:
